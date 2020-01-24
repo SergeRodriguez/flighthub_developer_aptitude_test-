@@ -6,6 +6,7 @@ const swapi = require("swapi-node");
 router.get('/', function (req, res, next) {
 
    Promise.all([
+     
     Promise.resolve(swapi.get('https://swapi.co/api/people/?page=1')),
     Promise.resolve(swapi.get('https://swapi.co/api/people/?page=2')),
     Promise.resolve(swapi.get('https://swapi.co/api/people/?page=3')),
