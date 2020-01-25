@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
 import Loader from "react-loader-spinner";
+import "./Loader.scss";
 
 import {
   Grid,
@@ -15,8 +16,8 @@ function People() {
 
   const [columns] = useState([
     { name: 'name', title: 'Name' },
+    { name: 'gender', title: 'Gender' },
     { name: 'birth_year', title: 'Birth Year' },
-    { name: 'gender', title: 'Gender' },    
     { name: 'hair_color', title: 'Hair Color' },
     { name: 'skin_color', title: 'Skin Color' },
     { name: 'eye_color', title: 'Eye Color' }
@@ -30,18 +31,18 @@ function People() {
   }, [])
 
   return (
-    rows.length ?
-    <Loader type="Plane" color="#000000" height={300} width={300} />
-    :
-    <div className="card">
-      <Grid
-        rows={rows}
-        columns={columns}
-      >
-        <Table />
-        <TableHeaderRow />
-      </Grid>
-    </div>
+    rows.length === 0 ?
+    <Loader className="position" color="#FFA500" width={200} height={200} type="Circles" />
+      :
+      <div className="card">
+        <Grid
+          rows={rows}
+          columns={columns}
+        >
+          <Table />
+          <TableHeaderRow />
+        </Grid>
+      </div>
   );
 }
 

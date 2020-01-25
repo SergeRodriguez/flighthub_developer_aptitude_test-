@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
 import Loader from "react-loader-spinner";
+import "./Loader.scss";
+
 
 import {
   Grid,
@@ -14,11 +16,11 @@ const getRowId = row => row.id;
 function People() {
 
   const [columns] = useState([
-    { name: 'name', title: 'Name' },
-    { name: 'starship_class', title: 'Starship Class' },
+    { name: 'name', title: 'Starship' },
+    { name: 'starship_class', title: 'Class' },
     { name: 'model', title: 'Model' },
-    { name: 'manufacturer', title: 'Manufacturer' },    
-    { name: 'passengers', title: 'Passenger Capacity' },
+    { name: 'manufacturer', title: 'Manufacturer' },
+    { name: 'passengers', title: 'Capacity for Passengers' },
   ]);
   const [rows, setRows] = useState([])
 
@@ -29,18 +31,18 @@ function People() {
   }, [])
 
   return (
-    rows.length ?
-    <Loader type="Plane" color="#000000" height={300} width={300} />
-    :
-    <div className="card">
-      <Grid
-        rows={rows}
-        columns={columns}
-      >
-        <Table />
-        <TableHeaderRow />
-      </Grid>
-    </div>
+    rows.length === 0 ?
+    <Loader className="position" color="#FFA500" width={200} height={200} type="Circles" />
+      :
+      <div className="card">
+        <Grid
+          rows={rows}
+          columns={columns}
+        >
+          <Table />
+          <TableHeaderRow />
+        </Grid>
+      </div>
   );
 }
 

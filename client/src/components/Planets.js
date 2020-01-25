@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
 import Loader from "react-loader-spinner";
+import "./Loader.scss";
 
 import {
   Grid,
@@ -14,7 +15,7 @@ const getRowId = row => row.id;
 function Planets() {
 
   const [columns] = useState([
-    { name: 'name', title: 'Name' },
+    { name: 'name', title: 'Planet' },
     { name: 'population', title: 'Population' },
     { name: 'terrain', title: 'Terrain' },
     { name: 'climate', title: 'Climate' },    
@@ -29,8 +30,8 @@ function Planets() {
   }, [])
 
   return (
-    rows.length ?
-    <Loader type="Plane" color="#000000" height={300} width={300} />
+    rows.length === 0 ?
+    <Loader className="position" color="#FFA500" width={200} height={200} type="Circles" />
     :
     <div className="card">
       <Grid

@@ -5,18 +5,19 @@ import People from "./components/People";
 import Planets from "./components/Planets";
 import Starships from "./components/Starships";
 
+
 function App() {
   return (
     <Router>
       <div className="nav-header">
-        <Link to="/" className="nav-header-item">
+        <Link to="/" className="nav-header-button">
           People
         </Link>
-        <Link to="/planets" className="nav-header-item">
-          Planets
-        </Link>
-        <Link to="/starships" className="nav-header-item">
+        <Link to="/starships" className="nav-header-button">
           Starships
+        </Link>
+        <Link to="/planets" className="nav-header-button">
+          Planets
         </Link>
       </div>
 
