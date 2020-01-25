@@ -1,41 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import {
-  Grid,
-  Table,
-  TableHeaderRow,
-} from '@devexpress/dx-react-grid-bootstrap4';
-import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
-import axios from "axios"
-
-const getRowId = row => row.id;
-
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./App.scss";
+import People from "./components/People";
+import Planets from "./components/Planets";
+import Starships from "./components/Starships";
 
 function App() {
-  const [columns] = useState([
-    { name: 'id', title: 'ID' },
-    { name: 'name', title: 'Name' },
-    { name: 'hair_color', title: 'Hair Color' },
-    { name: 'skin_color', title: 'Skin Color' },
-    { name: 'eye_color', title: 'Eye Color' },
-  ]);
-  const [rows, setRows] = useState([])
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/people/").then((res) => {
-      setRows(res.data.map((row, index) => ({ ...row, id: index })))
-    })
-  }, [])
   return (
-    <div className="card">
-      <Grid
-        rows={rows}
-        columns={columns}
-      >
-        <Table />
-        <TableHeaderRow />
-      </Grid>
-    </div>
+    <Router>
+      <div className="nav-header">
+        <Link to="/" className="nav-header-item">
+          People
+        </Link>
+        <Link to="/planets" className="nav-header-item">
+          Planets
+        </Link>
+        <Link to="/starships" className="nav-header-item">
+          Starships
+        </Link>
+      </div>
+
+      <Switch>
+        <Route exact path="/">
+          <People />
+        </Route>
+
+        <Route path="/planets">
+          <Planets />
+        </Route>
+
+        <Route path="/starships">
+          <Starships />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
