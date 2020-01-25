@@ -3,17 +3,30 @@ import axios from "axios"
 import Loader from "react-loader-spinner";
 import "./Loader.scss";
 
+import {
+  SearchState,
+  IntegratedFiltering,
+} from '@devexpress/dx-react-grid';
 
 import {
   Grid,
   Table,
+  Toolbar,
+  SearchPanel,
   TableHeaderRow,
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
 const getRowId = row => row.id;
 
-function People() {
+const TableComponent = ({ ...restProps }) => (
+  <Table.Table
+    {...restProps}
+    className="table-hover table-bordered"
+  />
+);
+
+function Starships() {
 
   const [columns] = useState([
     { name: 'name', title: 'Starship' },
@@ -22,7 +35,9 @@ function People() {
     { name: 'manufacturer', title: 'Manufacturer' },
     { name: 'passengers', title: 'Capacity for Passengers' },
   ]);
-  const [rows, setRows] = useState([])
+  const [rows, setRows] = useState([]);
+  const [searchValue, setSearchState] = useState('');
+
 
   useEffect(() => {
     axios.get("http://localhost:3001/starships/").then((res) => {
@@ -32,18 +47,28 @@ function People() {
 
   return (
     rows.length === 0 ?
-    <Loader className="position" color="#FFA500" width={200} height={200} type="Circles" />
+      <Loader className="position" color="#FFA500" width={200} height={200} type="Circles" />
       :
       <div className="card">
         <Grid
           rows={rows}
           columns={columns}
         >
-          <Table />
+          <SearchState
+            value={searchValue}
+            onValueChange={setSearchState}
+          />
+          <IntegratedFiltering />
+
+          <Table
+            tableComponent={TableComponent}
+          />
           <TableHeaderRow />
+          <Toolbar />
+          <SearchPanel />
         </Grid>
       </div>
   );
 }
 
-export default People;
+export default Starships;

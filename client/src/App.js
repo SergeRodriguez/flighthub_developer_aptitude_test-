@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <div className="nav-header">
-        <Link to="/" className="nav-header-button">
+        <Link to="/people" className="nav-header-button">
           People
         </Link>
         <Link to="/starships" className="nav-header-button">
@@ -22,7 +22,7 @@ function App() {
       </div>
 
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/people">
           <People />
         </Route>
 
