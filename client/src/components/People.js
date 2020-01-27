@@ -3,11 +3,13 @@ import axios from "axios"
 import Loader from "react-loader-spinner";
 import "./Loader.scss";
 
+//importing the DevExtreme React Grid from Dev Express library (functionality)
 import {
   SearchState,
   IntegratedFiltering,
 } from '@devexpress/dx-react-grid';
 
+//importing the DevExtreme React Grid from Dev Express library (visual components)
 import {
   Grid,
   Table,
@@ -19,6 +21,7 @@ import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
 const getRowId = row => row.id;
 
+// adding style to table (highlighting rows when you hover over them and adding borders)
 const TableComponent = ({ ...restProps }) => (
   <Table.Table
     {...restProps}
@@ -41,6 +44,7 @@ function People() {
 
 
   useEffect(() => {
+    //fetching data from back-end and adding an 'id' key simultaneously
     axios.get("http://localhost:3001/people/").then((res) => {
       setRows(res.data.map((row, index) => ({ ...row, id: index })))
     })
