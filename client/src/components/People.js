@@ -19,8 +19,6 @@ import {
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
-const getRowId = row => row.id;
-
 // adding style to table (highlighting rows when you hover over them and adding borders)
 const TableComponent = ({ ...restProps }) => (
   <Table.Table

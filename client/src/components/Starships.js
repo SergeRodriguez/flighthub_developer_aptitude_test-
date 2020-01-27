@@ -18,7 +18,6 @@ import {
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
-const getRowId = row => row.id;
 
 const TableComponent = ({ ...restProps }) => (
   <Table.Table
